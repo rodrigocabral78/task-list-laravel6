@@ -4,49 +4,49 @@ use PhpCsFixer\Config;
 use PhpCsFixer\Finder;
 
 $rules = [
-    '@PSR2'                                       => true,
-    'align_multiline_comment'                     => false,
-    'array_indentation'                           => true,
-    'array_syntax'                                => ['syntax' => 'short'],
-    'binary_operator_spaces'                      => [
+    '@PSR2'                   => true,
+    'align_multiline_comment' => false,
+    'array_indentation'       => true,
+    'array_syntax'            => ['syntax' => 'short'],
+    'binary_operator_spaces'  => [
         'default' => 'align_single_space_minimal',
     ],
-    'blank_line_after_namespace'                  => true,
-    'blank_line_after_opening_tag'                => false,
-    'blank_line_before_statement'                 => ['statements' => ['break', 'continue', 'declare', 'return', 'throw', 'try']],
-    'braces'                                      => [
+    'blank_line_after_namespace'   => true,
+    'blank_line_after_opening_tag' => false,
+    'blank_line_before_statement'  => ['statements' => ['break', 'continue', 'declare', 'return', 'throw', 'try']],
+    'braces'                       => [
         'allow_single_line_closure'                   => false,
         'position_after_anonymous_constructs'         => 'same',
         'position_after_control_structures'           => 'same',
         'position_after_functions_and_oop_constructs' => 'next',
     ],
-    'cast_spaces'                                 => ['space' => 'none'],
+    'cast_spaces' => ['space' => 'none'],
     // 'class_attributes_separation' => [
     //     'elements' => ['method', 'property'],
     // ],
-    'no_unused_imports'                           => false,
-    'combine_consecutive_issets'                  => false,
-    'combine_consecutive_unsets'                  => false,
-    'combine_nested_dirname'                      => false,
-    'comment_to_phpdoc'                           => false,
-    'compact_nullable_typehint'                   => false,
-    'concat_space'                                => ['spacing' => 'one'],
-    'constant_case'                               => [
+    'no_unused_imports'          => true,
+    'combine_consecutive_issets' => false,
+    'combine_consecutive_unsets' => false,
+    'combine_nested_dirname'     => false,
+    'comment_to_phpdoc'          => false,
+    'compact_nullable_typehint'  => false,
+    'concat_space'               => ['spacing' => 'one'],
+    'constant_case'              => [
         'case' => 'lower',
     ],
-    'date_time_immutable'                         => false,
-    'declare_equal_normalize'                     => [
+    'date_time_immutable'     => false,
+    'declare_equal_normalize' => [
         'space' => 'single',
     ],
-    'declare_strict_types'                        => false,
-    'dir_constant'                                => false,
-    'doctrine_annotation_array_assignment'        => false,
-    'doctrine_annotation_braces'                  => false,
-    'doctrine_annotation_indentation'             => [
+    'declare_strict_types'                 => false,
+    'dir_constant'                         => false,
+    'doctrine_annotation_array_assignment' => false,
+    'doctrine_annotation_braces'           => false,
+    'doctrine_annotation_indentation'      => [
         'ignored_tags'       => [],
         'indent_mixed_lines' => true,
     ],
-    'doctrine_annotation_spaces'                  => [
+    'doctrine_annotation_spaces' => [
         'after_argument_assignments'     => false,
         'after_array_assignments_colon'  => false,
         'after_array_assignments_equals' => false,
@@ -76,28 +76,22 @@ $finder->in([
     __DIR__ . '/app',
     __DIR__ . '/config',
     __DIR__ . '/database',
-]);
-
-// $finder->name('*.php')
-//     ->notName('*.blade.php')
-//     ->ignoreDotFiles(true)
-//     ->ignoreVCS(true);
+    __DIR__ . '/resources',
+    __DIR__ . '/routes',
+    __DIR__ . '/tests',
+])->name('*.php')
+    // ->notName('*.blade.php')
+    ->ignoreDotFiles(true)
+    ->ignoreVCS(true);
 
 $config = new Config();
 
-// $config->setFinder($finder)
-//     ->setRules($rules)
-//     ->setRiskyAllowed(false)
-//     ->setUsingCache(true)
-//     ->setIndent("    ")
-//     // ->setIndent("\t")
-//     ->setLineEnding("\n");
-
-$config->setIndent('    ');
-
-$config
-    ->setRiskyAllowed(false)
+$config->setFinder($finder)
     ->setRules($rules)
-    ->setFinder($finder);
+    ->setRiskyAllowed(false)
+    ->setUsingCache(true)
+    ->setIndent("    ")
+    // ->setIndent("\t")
+    ->setLineEnding("\n");
 
 return $config;

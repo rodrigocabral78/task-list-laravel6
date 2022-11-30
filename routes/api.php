@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+// $basePath = base_path('routes/api/');
+// if (is_dir($basePath)) {
+//     $files = File::allFiles($basePath);
+//     foreach ($files as $file) {
+//         Route::group([], $basePath . $file->getFilename());
+//     }
+// }

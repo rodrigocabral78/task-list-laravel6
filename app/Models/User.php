@@ -2,21 +2,35 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
     use Notifiable, SoftDeletes;
 
     /**
-     * The table associated with the model.
+     * Undocumented function
      *
-     * @var string
+     * @return void
      */
+    protected static function booted()
+    {
+        static::creating(
+            function (User $user) {
+                $user->uuid = (string)Str::uuid();
+            }
+        );
+    }
+
+    /**
+         * The table associated with the model.
+         *
+         * @var string
+         */
     protected $table = 'users';
 
     /**
@@ -84,7 +98,6 @@ class User extends Authenticatable
      */
     public function setPasswordAttribute($password)
     {
-        // $this->attributes['password'] = bcrypt($password);
         $this->attributes['password'] = Hash::make($password);
     }
 

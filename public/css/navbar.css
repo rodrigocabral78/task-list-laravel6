@@ -1,0 +1,16 @@
+.navbar img {
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  margin-right: 10px;
+}
+
+.navbar .navbar-nav>a>i {
+  display: block;
+  text-align: center;
+}
+
+.navbar .navbar-nav>li>a>i {
+  display: block;
+  text-align: center;
+}

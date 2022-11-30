@@ -14,6 +14,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
+            'uuid'              => Str::uuid(),
             'name'              => 'Administrator',
             'email'             => 'admin@mailtrap.io',
             'email_verified_at' => now(),
