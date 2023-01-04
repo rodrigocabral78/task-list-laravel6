@@ -26,7 +26,9 @@ class CreateUsersTable extends Migration
             $table->bigInteger('created_by')->nullable()->index();
             $table->bigInteger('updated_by')->nullable()->index();
             $table->timestamps();
-            $table->softDeletes();
+            $table->softDeletes()->index();
+            $table->index('created_at');
+            $table->index('updated_at');
         });
     }
 
@@ -37,6 +39,8 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('users', function (Blueprint $table) {
+            $table->dropIndex(['created_at','updated_at']);
+        });
     }
 }
