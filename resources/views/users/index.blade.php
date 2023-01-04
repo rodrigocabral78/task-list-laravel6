@@ -51,16 +51,14 @@
               <td>{{ ($user->created_at)->format('d/m/Y H:i') }}</td>
               <td>{{ ($user->updated_at)->format('d/m/Y H:i') }}</td>
               <td style="text-align: center;">
-                <a href="{{ route('users.show',$user->uuid) }}" title="{{ __('Detail') }}" data-toggle="tooltip">
-                  <i class="bi bi-eye-fill text-info h4"></i></a>
-                <a href="{{ route('users.edit',$user->uuid) }}" title="{{ __('Edit') }}" data-toggle="tooltip">
-                  <i class="bi bi-pencil-fill text-warning h4"></i></a>
-                <a href="{{ route('users.destroy',['user'=>$user->uuid]) }}" title="{{ _('Delete') }}"
-                  data-toggle="tooltip"
-                  onclick="event.preventDefault(); document.getElementById('delete-form').submit();">
-                  <i class="bi bi-trash-fill text-danger h4"></i></a>
-                <form id="delete-form" action="{{ route('users.destroy',['user'=>$user->uuid]) }}" method="POST"
-                  style="display: none;">
+                <form id="delete-form" action="{{ route('users.destroy',$user->id) }}" method="POST">
+                  <a href="{{ route('users.show',$user->id) }}" title="{{ __('Detail') }}" data-toggle="tooltip">
+                    <i class="bi bi-eye-fill text-info h4"></i></a>
+                  <a href="{{ route('users.edit',$user->id) }}" title="{{ __('Edit') }}" data-toggle="tooltip">
+                    <i class="bi bi-pencil-fill text-warning h4"></i></a>
+                  <a href="#" title="{{ _('Delete') }}" data-toggle="tooltip"
+                    onclick="this.parentNode.submit(); return false;">
+                    <i class="bi bi-trash-fill text-danger h4"></i></a>
                   @csrf
                   @method('DELETE')
                 </form>
